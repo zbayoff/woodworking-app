@@ -6,6 +6,7 @@ from backend.db import db, ma
 from backend.controllers.posts import POSTS_API
 from backend.controllers.categories import CATEGORIES_API
 
+
 def create_app():
 
     load_dotenv()
@@ -20,12 +21,13 @@ def create_app():
 
     with app.app_context():
         # db.drop_all()
-        
+
         db.create_all()
         app.register_blueprint(POSTS_API)
         app.register_blueprint(CATEGORIES_API)
 
     return app
+
 
 if __name__ == "__main__":
     create_app()
