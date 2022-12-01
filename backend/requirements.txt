@@ -1,0 +1,9 @@
+flask
+python-dotenv
+psycopg2-binary
+Flask-SQLAlchemy
+pylint_flask_sqlalchemy
+flask-marshmallow
+marshmallow-sqlalchemy
+Blueprint
+gunicorn

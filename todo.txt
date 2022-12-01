@@ -1,0 +1,8 @@
+1. add slug to backend for routing: 
+https://woodworking-app.com/posts/jigs/crosscut-sled
+https://woodworking-app.com/posts/joints/dovetail
+
+2. Using On-Demand Revalidation when a user creates a new blog post or category, run the revalidation 
+
+https://joebell.co.uk/blog/updating-static-next-js-pages-instantly
+https://swr.vercel.app/docs/with-nextjs
