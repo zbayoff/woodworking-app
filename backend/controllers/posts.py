@@ -1,6 +1,6 @@
 from flask import abort, Blueprint, request
-from ..db import db
-from ..models.post import PostModel, post_schema, posts_schema
+from db import db
+from models.post import PostModel, post_schema, posts_schema
 
 POSTS_API = Blueprint("POSTS_API", __name__)
 
