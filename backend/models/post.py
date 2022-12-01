@@ -1,4 +1,4 @@
-from db import db, ma
+from ..db import db, ma
 
 
 class PostModel(db.Model):

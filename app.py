@@ -2,9 +2,9 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 
-from db import db, ma
-from controllers.posts import POSTS_API
-from controllers.categories import CATEGORIES_API
+from backend.db import db, ma
+from backend.controllers.posts import POSTS_API
+from backend.controllers.categories import CATEGORIES_API
 
 def create_app():
 

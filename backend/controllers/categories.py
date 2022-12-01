@@ -1,6 +1,6 @@
 from flask import Blueprint, request, Response
-from db import db
-from models.category import CategoryModel, category_schema, categories_schema
+from ..db import db
+from ..models.category import CategoryModel, category_schema, categories_schema
 
 CATEGORIES_API = Blueprint("CATEGORIES_API", __name__)
 
