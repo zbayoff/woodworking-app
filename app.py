@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from flask import Flask, send_from_directory, render_template
+from flask import Flask
 
 from db import db, ma
 from backend.controllers.posts import POSTS_API
