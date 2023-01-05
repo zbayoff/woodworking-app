@@ -4,5 +4,9 @@
   ],
   "scripts": {
     "heroku-postbuild": "cd frontend/ && yarn install && yarn run build"
+  },
+  "dependencies": {
+    "@github/markdown-toolbar-element": "^2.1.1",
+    "@tanstack/react-query-devtools": "^4.19.1"
   }
 }

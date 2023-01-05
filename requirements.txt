@@ -8,3 +8,5 @@ marshmallow-sqlalchemy
 Blueprint
 gunicorn
 black
+boto3
+werkzeug

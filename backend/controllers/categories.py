@@ -1,6 +1,8 @@
-from flask import Blueprint, request, Response
+from flask import abort, Blueprint, request, Response
 from db import db
-from ..models.category import CategoryModel, category_schema, categories_schema
+from ..models.models import CategoryModel, category_schema, categories_schema
+
+# from ..models.category import CategoryModel, category_schema, categories_schema
 
 CATEGORIES_API = Blueprint("CATEGORIES_API", __name__)
 
@@ -10,9 +12,30 @@ def get_categories():
     all_categories = CategoryModel.query.all()
     return categories_schema.dump(all_categories)
 
+# get single category
+@CATEGORIES_API.route("/api/category/<id>", methods=["GET"])
+def get_category(id):
+    category = CategoryModel.query.get(id)
+    if category is None:
+        abort(404, description="Category not found")
+
+    return category_schema.jsonify(category)
+
+# get all posts in category<id>
+# @CATEGORIES_API.route("/api/category/<id>/posts", methods=["GET"])
+# def get_category_posts(id):
+#     category = CategoryModel.query.get(id)
+#     if category is None:
+#         abort(404, description="Category not found")
+
+#     print('category.posts')
+#     print(category.posts)
+
+#     return categories_schema.jsonify(category.posts)
+
 # @CATEGORIES_API.route("/api/revalidate", methods=["GET"])
 # def revalidate():
-    
+
 #     print(Response)
 #     Response.revalidate()
 #     return 'hey'
@@ -25,9 +48,8 @@ def add_category():
     data = request.json
 
     name = data["name"]
-    description = data["description"]
 
-    new_category = CategoryModel(name=name, description=description)
+    new_category = CategoryModel(name=name)
 
     db.session.add(new_category)
     db.session.commit()
@@ -35,7 +57,7 @@ def add_category():
     return category_schema.jsonify(new_category)
 
 
-# update product
+# update category
 @CATEGORIES_API.route("/api/category/<id>", methods=["PUT"])
 def update_category(id):
 
@@ -44,7 +66,6 @@ def update_category(id):
     data = request.json
 
     category.name = data["name"]
-    category.description = data["description"]
 
     db.session.commit()
 

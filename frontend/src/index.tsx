@@ -3,27 +3,48 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./index.scss";
-import App, { loader } from "./App";
-import reportWebVitals from "./reportWebVitals";
+import App, { categoriesLoader } from "./App";
 import ErrorPage from "./ErrorPage";
-import Post, { postLoader } from "./containers/Post";
+import Post, { detailPostLoader } from "./containers/Post";
+import NewPost, { newPostAction } from "./containers/NewPost";
+import Category, { categoryLoader } from "./containers/Category";
+import { EditPost, editPostAction } from "./containers/EditPost";
+import { Home, postsLoader } from "./containers/Home";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
-    // loader: getPostsLoader(queryClient),
+    // loader: postLoader(queryClient),
 
-    loader: loader,
+    loader: categoriesLoader(queryClient),
     children: [
+      { path: "/", element: <Home />, loader: postsLoader(queryClient) },
       {
         path: "posts/:postId",
         element: <Post />,
-        loader: postLoader,
+        loader: detailPostLoader(queryClient),
+      },
+      {
+        path: "posts/:postId/edit",
+        element: <EditPost />,
+        loader: detailPostLoader(queryClient),
+        action: editPostAction(queryClient),
+      },
+      {
+        path: "/new-post",
+        element: <NewPost />,
+        action: newPostAction(queryClient),
+      },
+      {
+        path: "category/:categoryId",
+        element: <Category />,
+        loader: categoryLoader(queryClient),
       },
     ],
   },
@@ -37,11 +58,7 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

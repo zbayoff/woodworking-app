@@ -2,7 +2,18 @@
 https://woodworking-app.com/posts/jigs/crosscut-sled
 https://woodworking-app.com/posts/joints/dovetail
 
-2. Using On-Demand Revalidation when a user creates a new blog post or category, run the revalidation 
+2. Dockerize the app
 
-https://joebell.co.uk/blog/updating-static-next-js-pages-instantly
-https://swr.vercel.app/docs/with-nextjs
+Can one blog post have many categories? 
+Say an article on dovetail joints...this article could have categories joints, and jigs (if there is a jig needed for this joint)
+
+3. Store blog images in S3 (and their metadata in Postgres? )
+
+4. REMOVE ANYS
+
+5. Make sure no spaces when ading multiple categories in form
+
+categories:
+jigs
+joints
+plans
